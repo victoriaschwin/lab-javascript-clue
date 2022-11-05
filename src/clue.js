@@ -23,21 +23,29 @@ let mrMustard = new Suspect ("Jack", "Mustard", "Retired Football Player", 62, "
 const suspectsArray = [mrGreen,drOrchid,profPlum,missScarlet,mrsPeacock,mrMustard];
 
 // Rooms Array
-let diningRoom = "Dining Room";
-let conservatory = "Conservatory";
-let kitchen = "Kitchen"
-let study= "Study"
-let library= "Library"
-let billiardRoom= "Billiard Room"
-let lounge= "Lounge"
-let ballroom= "Ballroom"
-let hall = "Hall"
-let spa= "Spa"
-let livingRoom= "Living Room"
-let observatory= "Observatory"
-let theater= "Theater"
-let guestHouse= "Guest House"
-let patio = "Patio"
+
+class Room{
+  constructor(name){
+    this.name = name
+  }
+}
+
+let diningRoom = new Room("Dining Room");
+let conservatory = new Room("Conservatory");
+let kitchen = new Room("Kitchen");
+let study= new Room("Study");
+let library= new Room("Library");
+let billiardRoom= new Room("Billiard Room");
+let lounge= new Room("Lounge");
+let ballroom= new Room("Ballroom");
+let hall = new Room("Hall");
+let spa= new Room("Spa");
+let livingRoom= new Room("Living Room");
+let observatory= new Room("Observatory");
+let theater= new Room("Theater");
+let guestHouse= new Room("Guest House");
+let patio = new Room("Patio");
+
 const roomsArray = [diningRoom,conservatory,kitchen,study,library,billiardRoom,lounge,ballroom,hall,spa,livingRoom,observatory,theater,guestHouse,patio];
 
 // Weapons Array
@@ -64,12 +72,33 @@ const weaponsArray = [rope,knife,candlestick,dumbbell,poison,axe,bat,trophy,pist
 
 // ITERATION 2
 
-function selectRandom() {}
+function selectRandom(arrayCard) {
+  
+  if(!arrayCard.length) return undefined;
+  let randomCard = Math.floor(Math.random() * arrayCard.length)
+  
+  return arrayCard[randomCard];
+}
 
-function pickMystery() {}
+selectRandom(weaponsArray);
+
+function pickMystery() {
+  let suspect = selectRandom(suspectsArray);
+  let weapon = selectRandom(weaponsArray);
+  let room = selectRandom(roomsArray);
+
+  return {suspect,weapon,room}
+
+}
 
 
 // ITERATION 3
 
-function revealMystery() {}
+function revealMystery(envelope) {
+  console.log(envelope)
+  console.log(envelope.suspect.firstName)
+  return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`
+}
 
+let mystery = pickMystery();
+revealMystery(mystery)
